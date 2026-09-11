@@ -1,0 +1,8 @@
+Class,Total_Samples,Correct_Samples,Accuracy,Error_Rate
+D_type,5,0,0.0,1.0
+Flat_I,1,0,0.0,1.0
+I_type,7,4,0.5714285714285714,0.4285714285714286
+M_type,3,2,0.6666666666666666,0.33333333333333337
+Round,0,0,0.0,1.0
+T_type,7,7,1.0,0.0
+Ti,0,0,0.0,1.0

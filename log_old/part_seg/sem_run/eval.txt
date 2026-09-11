@@ -1,0 +1,3 @@
+2025-12-20 11:26:15,772 - Model - INFO - PARAMETER ...
+2025-12-20 11:26:15,772 - Model - INFO - Namespace(batch_size=16, gpu='0', num_point=2048, log_dir='sem_run', normal=True, num_votes=3, data_dir='data/cast_dataset_gate_2048')
+2025-12-20 11:26:16,381 - Model - INFO - The number of test data is: 34

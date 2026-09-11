@@ -1,0 +1,8 @@
+=== Final Analysis Report ===
+Overall Accuracy: 0.8261
+
+--- Top 5 High Error Classes ---
+1. B : 22.2% Error (7/9)
+2. A : 14.3% Error (12/14)
+
+For full details, see 'class_error_summary.csv' and 'inference_full_report.csv'

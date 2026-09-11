@@ -1,2 +1,37 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# 默认：自动识别文本文件，统一用 LF 入库
+* text=auto eol=lf
+
+# 明确声明为文本，强制 LF
+*.py     text eol=lf
+*.md     text eol=lf
+*.txt    text eol=lf
+*.csv    text eol=lf
+*.json   text eol=lf
+*.yaml   text eol=lf
+*.yml    text eol=lf
+*.toml   text eol=lf
+*.cfg    text eol=lf
+*.ini    text eol=lf
+*.sh     text eol=lf
+
+# Windows 脚本保留 CRLF（如有）
+*.bat    text eol=crlf
+*.cmd    text eol=crlf
+
+# 二进制文件，禁止换行符转换
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.pdf    binary
+*.pth    binary
+*.pt     binary
+*.ckpt   binary
+*.h5     binary
+*.npz    binary
+*.so     binary
+*.dll    binary
+*.exe    binary
+*.zip    binary
+*.tar    binary
+*.gz     binary

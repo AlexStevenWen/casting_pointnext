@@ -1,0 +1,5 @@
+﻿Model,Best_mIoU(%),Top5_Avg_mIoU(%),Last20_Avg_mIoU(%),Last20_Std_mIoU(%),Best_ShiftErr,Last20_Avg_ShiftErr
+msg_bottleneckmlp_nostn_seg_custom_fps_1024,10.8021,9.8527,8.685,0.8701,0.7531,0.813
+msg_bottleneckmlp_nostn_seg_custom_fps_2048,15.8821,15.2868,13.8463,0.8891,0.6506,0.7101
+msg_bottleneckmlp_nostn_seg_custom_fps_4096,17.7635,17.188,16.1047,0.8244,0.6304,0.6845
+msg_bottleneckmlp_nostn_seg_custom_fps_8192,15.9022,15.6051,14.3189,0.6656,0.6631,0.7224

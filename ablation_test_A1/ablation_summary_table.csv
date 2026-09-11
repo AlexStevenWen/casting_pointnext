@@ -1,0 +1,7 @@
+﻿Model,Best_mIoU(%),Top5_Avg_mIoU(%),Last20_Avg_mIoU(%),Last20_Std_mIoU(%),Best_ShiftErr,Last20_Avg_ShiftErr
+ssg_invertedresidualmlp_nostn_seg_orig_fps_2048,0.0641,0.0128,0.0,0.0,0.9964,1.0
+ssg_invertedresidualmlp_nostn_seg_custom_fps_2048,14.2107,13.5781,12.3341,1.0626,0.7075,0.7616
+msg_invertedresidualmlp_nostn_seg_orig_fps_2048,1.516,1.1026,0.2941,0.5187,0.9674,0.9959
+msg_invertedresidualmlp_nostn_seg_custom_fps_2048,14.4137,13.4562,12.2721,0.705,0.7059,0.7416
+mrg_invertedresidualmlp_nostn_seg_orig_fps_2048,3.8945,1.5802,0.0,0.0,0.8961,1.0
+mrg_invertedresidualmlp_nostn_seg_custom_fps_2048,12.6598,12.3744,10.6841,1.167,0.6849,0.7644

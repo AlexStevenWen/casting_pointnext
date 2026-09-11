@@ -44,6 +44,7 @@ def parse_args():
     parser.add_argument('--log_dir', type=str, required=True, help='experiment root')
     parser.add_argument('--normal', action='store_true', default=False, help='use normals')
     parser.add_argument('--num_votes', type=int, default=3, help='aggregate segmentation scores with voting')
+    parser.add_argument('--data_dir', type=str, default='data/shapenetcore_partanno_segmentation_benchmark_v0_normal/', help='data directory')
     return parser.parse_args()
 
 
@@ -68,7 +69,7 @@ def main(args):
     log_string('PARAMETER ...')
     log_string(args)
 
-    root = 'data/shapenetcore_partanno_segmentation_benchmark_v0_normal/'
+    root = args.data_dir
 
     TEST_DATASET = PartNormalDataset(root=root, npoints=args.num_point, split='test', normal_channel=args.normal)
     testDataLoader = torch.utils.data.DataLoader(TEST_DATASET, batch_size=args.batch_size, shuffle=False, num_workers=4)

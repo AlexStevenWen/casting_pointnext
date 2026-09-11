@@ -1,0 +1,6 @@
+﻿Model,Best_mIoU(%),Top5_Avg_mIoU(%),Last20_Avg_mIoU(%),Last20_Std_mIoU(%),Best_ShiftErr,Last20_Avg_ShiftErr
+random_binary_1024,9.8413,9.0229,4.9256,2.1484,0.9104,0.9916
+random_binary_2048,10.4653,9.9701,7.996,1.2793,0.818,0.8921
+random_binary_4096,9.5332,8.9459,7.835,0.6105,0.8358,0.8954
+random_binary_8192,11.7163,11.63,10.6447,0.8102,0.7683,0.8167
+random_binary_16384,11.0819,10.6814,9.0021,1.0585,0.781,0.8552

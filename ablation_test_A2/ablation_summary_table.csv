@@ -1,0 +1,4 @@
+﻿Model,Best_mIoU(%),Top5_Avg_mIoU(%),Last20_Avg_mIoU(%),Last20_Std_mIoU(%),Best_ShiftErr,Last20_Avg_ShiftErr
+msg_invertedresidualmlp_nostn_seg_custom_fps_2048,14.4137,13.4562,12.2721,0.705,0.7059,0.7416
+msg_bottleneckmlp_nostn_seg_custom_fps_2048,15.8821,15.2868,13.8463,0.8891,0.6506,0.7101
+msg_increasingmlp_nostn_seg_custom_fps_2048,14.0681,13.3873,11.489,1.0045,0.6859,0.7777
