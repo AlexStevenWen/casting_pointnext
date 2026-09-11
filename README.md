@@ -226,3 +226,4 @@ HSU, W.-H. (2026). A Study on the Classification and Process Prediction of Gatin
 text
 
 You can replace your existing `README.md` with the above content. The thesis background is integrated after the introduction, and the citation is added at the end alongside the original references.
+[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=你的GitHub帳號&show_icons=true&theme=transparent)](https://github.com/anuraghazra/github-readme-stats)
