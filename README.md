@@ -1,5 +1,3 @@
-Markdown# PointNet / PointNet++ / PointNeXt PyTorch Implementation
-
 This repository provides an implementation for **PointNet**, **PointNet++**, and extended **PointNeXt** architecture variants in PyTorch. 
 
 The framework is highly optimized for both standard academic benchmarks and complex industrial 3D point cloud tasks. It specifically tackles the challenges of industrial datasets, which are often characterized by small sample sizes, severe class imbalances, and high geometric noise.
