@@ -64,7 +64,6 @@ A built-in automated overfitting protection mechanism. When validation metrics (
 *   **Automated Rendering**: Automatically exports 3D multi-view comparison plots (Prediction vs Ground Truth), decision threshold scanning curves (Threshold-mIoU Curve), hardest class rankings, and normalized confusion matrix heatmaps during training.
 
 ---
-
 ## Installation
 
 The latest codes are tested on Ubuntu 16.04, CUDA 10.1, PyTorch 1.6, and Python 3.7.
@@ -226,4 +225,3 @@ HSU, W.-H. (2026). A Study on the Classification and Process Prediction of Gatin
 text
 
 You can replace your existing `README.md` with the above content. The thesis background is integrated after the introduction, and the citation is added at the end alongside the original references.
-[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=你的GitHub帳號&show_icons=true&theme=transparent)](https://github.com/anuraghazra/github-readme-stats)
