@@ -1,6 +1,25 @@
-This repository provides an implementation for **PointNet**, **PointNet++**, and extended **PointNeXt** architecture variants in PyTorch. 
+# PointNet / PointNet++ / PointNeXt in PyTorch
+
+This repository provides an implementation for **PointNet**, **PointNet++**, and extended **PointNeXt** architecture variants in PyTorch.
 
 The framework is highly optimized for both standard academic benchmarks and complex industrial 3D point cloud tasks. It specifically tackles the challenges of industrial datasets, which are often characterized by small sample sizes, severe class imbalances, and high geometric noise.
+
+## Project Background and Academic Context
+
+This tool is part of the experimental methodology of the following master's thesis:
+
+- **Thesis Title**: A Study on the Classification and Process Prediction of Gating Systems for Investment Casting of A356 Aluminum Alloy
+- **Author**: HSU, WEN-HO
+- **Advisor**: CHEN, TZUNG-MING
+- **Institution**: National Changhua University of Education
+- **Department**: Department of Electrical and Mechanical Technology
+- **Degree**: Master's Thesis
+- **Oral Defense Date**: 2026-07-10
+- **Permanent URL**: [https://hdl.handle.net/11296/32a644](https://hdl.handle.net/11296/32a644)
+
+**Keywords**: A356 aluminum alloy, investment casting, automated machine learning (AutoML), 3D point cloud semantic segmentation.
+
+The research aims to establish a gating system classification model and process prediction system for A356 aluminum alloy investment casting. This repository provides the deep learning backbone for **runner system identification and gate localization** on industrial casting point clouds. The modifications described below enable the network to handle multi-modal inputs (coordinates, normals, and continuous soft labels) and to address the severe class imbalance inherent in gate regions, directly supporting the thesis's segmentation and regression tasks.
 
 ### Supported Tasks:
 *   **Global Object Classification**
@@ -52,8 +71,36 @@ The latest codes are tested on Ubuntu 16.04, CUDA 10.1, PyTorch 1.6, and Python 
 
 ```bash
 conda install pytorch==1.6.0 cudatoolkit=10.1 -c pytorch
-Note: The PointNeXt extension shares the same environment and has no additional mandatory dependencies beyond the original implementation.Directory Structure & Core Scriptstrain_classification_keypoint.py: Executes the global feature classification task for runner systems.train_partseg_nocls_segmentation_smart_v5.py: Executes the binary semantic segmentation task (generates hard masks).train_partseg_nocls_regress_v3.py: Executes the thermal field regression task (predicts continuous contact intensity).Model Generation Script: Dynamically writes architecture files (e.g., exp_pointnext_part_seg_nocls_msg_invertedresidualmlp_nostn_regress.py) into the models/ directory.data_utils/: Data preprocessing utilities.visualizer/: C++ and Python visualization tools.log/: Training logs, checkpoints, and output reports.Quick Start Guide1. Generate the Model Architecture LibraryBefore starting the training, run the generation script to build all necessary network architectures:Bashpython generate_models.py
-Once executed, 36 architecture .py files will be automatically generated under the models/ folder.2. Classification (ModelNet10/40)Data Preparation: Download alignment ModelNet and save in data/modelnet40_normal_resampled/. If you want to use offline processing of data to accelerate training, use --process_data in the first run. For ModelNet10, use --num_category 10.Bash# Example: pointnet2_ssg without normal features
+Note: The PointNeXt extension shares the same environment and has no additional mandatory dependencies beyond the original implementation.
+
+Directory Structure & Core Scripts
+train_classification_keypoint.py: Executes the global feature classification task for runner systems.
+
+train_partseg_nocls_segmentation_smart_v5.py: Executes the binary semantic segmentation task (generates hard masks).
+
+train_partseg_nocls_regress_v3.py: Executes the thermal field regression task (predicts continuous contact intensity).
+
+Model Generation Script: Dynamically writes architecture files (e.g., exp_pointnext_part_seg_nocls_msg_invertedresidualmlp_nostn_regress.py) into the models/ directory.
+
+data_utils/: Data preprocessing utilities.
+
+visualizer/: C++ and Python visualization tools.
+
+log/: Training logs, checkpoints, and output reports.
+
+Quick Start Guide
+1. Generate the Model Architecture Library
+Before starting the training, run the generation script to build all necessary network architectures:
+
+bash
+python generate_models.py
+Once executed, 36 architecture .py files will be automatically generated under the models/ folder.
+
+2. Classification (ModelNet10/40)
+Data Preparation: Download alignment ModelNet and save in data/modelnet40_normal_resampled/. If you want to use offline processing of data to accelerate training, use --process_data in the first run. For ModelNet10, use --num_category 10.
+
+bash
+# Example: pointnet2_ssg without normal features
 python train_classification.py --model pointnet2_cls_ssg --log_dir pointnet2_cls_ssg
 python test_classification.py --log_dir pointnet2_cls_ssg
 
@@ -62,16 +109,57 @@ python train_classification.py --model pointnet2_cls_ssg --use_normals --log_dir
 
 # Example: pointnet2_ssg with uniform sampling
 python train_classification.py --model pointnet2_cls_ssg --use_uniform_sample --log_dir pointnet2_cls_ssg_fps
-ModelAccuracyPointNet (Official)89.2PointNet2 (Official)91.9PointNet (Pytorch without normal)90.6PointNet (Pytorch with normal)91.4PointNet2_SSG (Pytorch without normal)92.2PointNet2_SSG (Pytorch with normal)92.4PointNet2_MSG (Pytorch with normal)92.83. Part Segmentation (ShapeNet)Data Preparation: Download alignment ShapeNet and save in data/shapenetcore_partanno_segmentation_benchmark_v0_normal/.Bash# Example: pointnet2_msg
+Model	Accuracy
+PointNet (Official)	89.2
+PointNet2 (Official)	91.9
+PointNet (Pytorch without normal)	90.6
+PointNet (Pytorch with normal)	91.4
+PointNet2_SSG (Pytorch without normal)	92.2
+PointNet2_SSG (Pytorch with normal)	92.4
+PointNet2_MSG (Pytorch with normal)	92.8
+3. Part Segmentation (ShapeNet)
+Data Preparation: Download alignment ShapeNet and save in data/shapenetcore_partanno_segmentation_benchmark_v0_normal/.
+
+bash
+# Example: pointnet2_msg
 python train_partseg.py --model pointnet2_part_seg_msg --normal --log_dir pointnet2_part_seg_msg
 python test_partseg.py --normal --log_dir pointnet2_part_seg_msg
-ModelInstance avg IoUClass avg IoUPointNet (Official)83.780.4PointNet2 (Official)85.181.9PointNet (Pytorch)84.381.1PointNet2_SSG (Pytorch)84.981.8PointNet2_MSG (Pytorch)85.482.54. Semantic Segmentation (S3DIS)Data Preparation: Download the 3D indoor parsing dataset (S3DIS) and save in data/s3dis/Stanford3dDataset_v1.2_Aligned_Version/.Bashcd data_utils
+Model	Instance avg IoU	Class avg IoU
+PointNet (Official)	83.7	80.4
+PointNet2 (Official)	85.1	81.9
+PointNet (Pytorch)	84.3	81.1
+PointNet2_SSG (Pytorch)	84.9	81.8
+PointNet2_MSG (Pytorch)	85.4	82.5
+4. Semantic Segmentation (S3DIS)
+Data Preparation: Download the 3D indoor parsing dataset (S3DIS) and save in data/s3dis/Stanford3dDataset_v1.2_Aligned_Version/.
+
+bash
+cd data_utils
 python collect_indoor3d_data.py
-Run:Bash# Example: pointnet2_ssg
+Run:
+
+bash
+# Example: pointnet2_ssg
 python train_semseg.py --model pointnet2_sem_seg --test_area 5 --log_dir pointnet2_sem_seg
 python test_semseg.py --log_dir pointnet2_sem_seg --test_area 5 --visual
-Visualization results will be saved in log/sem_seg/pointnet2_sem_seg/visual/.ModelOverall AccClass avg IoUCheckpointPointNet (Pytorch)78.943.740.7MBPointNet2_ssg (Pytorch)83.053.511.2MB5. Industrial Casting Tasks (PointNeXt)Specify the generated network architecture using the --model parameter and provide the corresponding dataset path.Classification TaskBashpython train_classification_keypoint.py --model pointnet_cls --data_dir data/cast_dataset --epoch 200
-Segmentation / Regression TaskSupports --use_smart_rewind to activate the Smart Rewind mechanism.Bashpython train_partseg_nocls_regress_v3.py \
+Visualization results will be saved in log/sem_seg/pointnet2_sem_seg/visual/.
+
+Model	Overall Acc	Class avg IoU	Checkpoint
+PointNet (Pytorch)	78.9	43.7	40.7MB
+PointNet2_ssg (Pytorch)	83.0	53.5	11.2MB
+5. Industrial Casting Tasks (PointNeXt)
+Specify the generated network architecture using the --model parameter and provide the corresponding dataset path.
+
+Classification Task
+
+bash
+python train_classification_keypoint.py --model pointnet_cls --data_dir data/cast_dataset --epoch 200
+Segmentation / Regression Task
+
+Supports --use_smart_rewind to activate the Smart Rewind mechanism.
+
+bash
+python train_partseg_nocls_regress_v3.py \
     --model exp_pointnext_part_seg_nocls_msg_invertedresidualmlp_nostn_regress \
     --data_dir data/cast_dataset_gate \
     --epoch 500 \
@@ -79,16 +167,48 @@ Segmentation / Regression TaskSupports --use_smart_rewind to activate the Smart 
     --optimizer AdamW \
     --use_smart_rewind \
     --patience 15
-For binary segmentation, use train_partseg_nocls_segmentation_smart_v5.py with similar arguments.Outputs & Report Interpretation:Upon completion of training, all results are saved in timestamped folders under the log/part_seg/ or log/classification/ directories. These include:checkpoints/: Stores the best_model.pth.out_data/: Contains the .txt prediction results (prediction/) and labels (ground_truth/), restored to absolute coordinates and original filenames.visual_results/: Holds 3D heatmap renderings and evaluation metric charts.*.csv: Detailed inference reports (e.g., inference_full_report.csv, class_error_summary.csv) documenting single-sample performance, hit status, and error rates per class.Visualization ToolsUsing show3d_balls.pyBash# build C++ code for visualization
+For binary segmentation, use train_partseg_nocls_segmentation_smart_v5.py with similar arguments.
+
+Outputs & Report Interpretation:
+
+Upon completion of training, all results are saved in timestamped folders under the log/part_seg/ or log/classification/ directories. These include:
+
+checkpoints/: Stores the best_model.pth.
+
+out_data/: Contains the .txt prediction results (prediction/) and labels (ground_truth/), restored to absolute coordinates and original filenames.
+
+visual_results/: Holds 3D heatmap renderings and evaluation metric charts.
+
+*.csv: Detailed inference reports (e.g., inference_full_report.csv, class_error_summary.csv) documenting single-sample performance, hit status, and error rates per class.
+
+Visualization Tools
+Using show3d_balls.py
+
+bash
+# build C++ code for visualization
 cd visualizer
 bash build.sh
 
 # run one example
 python show3d_balls.py
-References & Creditshalimacc/pointnet3fxia22/pointnet.pytorchcharlesq34/PointNetcharlesq34/PointNet++CitationIf you find this repo useful in your research, please consider citing the original works and our adaptations:程式碼片段@article{Pytorch_Pointnet_Pointnet2,
+References & Credits
+halimacc/pointnet3
+
+fxia22/pointnet.pytorch
+
+charlesq34/PointNet
+
+charlesq34/PointNet++
+
+Citation
+If you find this repo useful in your research, please consider citing the original works and our adaptations.
+
+Original Works
+bibtex
+@article{Pytorch_Pointnet_Pointnet2,
       Author = {Xu Yan},
       Title = {Pointnet/Pointnet++ Pytorch},
-      Journal = {[https://github.com/yanx27/Pointnet_Pointnet2_pytorch](https://github.com/yanx27/Pointnet_Pointnet2_pytorch)},
+      Journal = {https://github.com/yanx27/Pointnet_Pointnet2_pytorch},
       Year = {2019}
 }
 
@@ -98,3 +218,11 @@ References & Creditshalimacc/pointnet3fxia22/pointnet.pytorchcharlesq34/PointNet
   journal={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
   year={2020}
 }
+Thesis Citation
+If this tool is helpful to your research, please also cite:
+
+HSU, W.-H. (2026). A Study on the Classification and Process Prediction of Gating Systems for Investment Casting of A356 Aluminum Alloy (Master's thesis). National Changhua University of Education, Department of Electrical and Mechanical Technology, Changhua City. Retrieved from https://hdl.handle.net/11296/32a644
+
+text
+
+You can replace your existing `README.md` with the above content. The thesis background is integrated after the introduction, and the citation is added at the end alongside the original references.
